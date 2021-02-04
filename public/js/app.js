@@ -1,3 +1,10 @@
+//game variables
+let score = 0;
+let yscore = 0;
+let oscore = 0;
+let yourTurn = false;
+
+
 var socket = io();
 
 const messageInput = document.getElementById('message-input');
@@ -33,15 +40,13 @@ socket.on('updateUserList', userListObj => {
 
     Array.prototype.forEach.call(users, el => {
         el.addEventListener('click', e => {
-            console.log(e.currentTarget.dataset.socketid);
             socket.emit('sendYo', { socketId: e.currentTarget.dataset.socketid });
-            console.log('click');
         });
     });
 });
 
+
 socket.on('chat_message', msgObj => {
-    console.log(msgObj)
     const item = document.createElement('div');
     item.innerHTML = `
         <div>
@@ -53,18 +58,149 @@ socket.on('chat_message', msgObj => {
 });
 
 socket.on('reciveYo', msgObj => {
-    console.log(msgObj)
     const item = document.createElement('div');
     item.innerHTML = `
         <div>
             <p><b>${ msgObj.user }</b></p>
-            <p>Yo!</p>
+            <button onclick=acceptInvite("${ msgObj.socketId }") class="invite-button">${ msgObj.user } wants to play</button>
         </div>
     `
     chatMessages.appendChild(item);
 });
 
+socket.on('game_on', data => {
+    yourTurn = true;
+    generateGame(data.socketId);
+});
+
+function acceptInvite(id) {
+    generateGame(id);
+    socket.emit('invite_accepted', id);
+} 
+
 document.getElementById('logout').onclick = function() {
-    console.log('logout');
     location.href = '/logout';
 };
+
+function generateGame(id) {
+    document.getElementById('game').innerHTML = `
+        <section>
+            <div>
+                <span>Your Score:</span>
+                <span id="yourscore">0</span>
+            </div>
+            <div>
+                <span>Current Score:</span>
+                <span id="currentscore">0
+            </div>
+            <div>
+                <span>Opponent Score:</span>
+                <span id="opponentscore">0
+            </div>
+            <div id="dice1">0</div>
+            <div id="dice2">0</div>
+            <div>
+                <button onclick="rollDice('${id}')" id="roll">
+                    Roll
+                </button>
+                <button onclick="giveoverButton('${id}')" id="giveover">
+                    Give Over
+                </button>
+                
+            </div>
+            <div id="info">
+            </div>
+            <div>
+                <div id="chat-messages-private">
+                </div>
+                <div>
+                    <label>
+                        <input id="message-input-private" type="text" value="" placeholder="Aa" />
+                    </label>
+                    <button onclick="sendPrivate('${id}')">Send</button>
+                </div>
+            </div>
+        </section>`;
+
+        if (yourTurn == false) {
+            document.getElementById("roll").disabled = true;
+            document.getElementById("giveover").disabled = true;
+        }
+        
+        /*<button onclick="restartButton()" id="restart">
+            Restart
+        </button>*/
+}
+
+
+function rollDice(id) {
+    let firstRoll = Math.floor((Math.random() * 6) + 1);
+    let secondRoll = Math.floor((Math.random() * 6) + 1);
+    document.getElementById("dice1").innerHTML = firstRoll;
+    document.getElementById("dice2").innerHTML = secondRoll;
+    
+    
+    if (firstRoll == 1 || secondRoll == 1) {
+        score = 0;
+        giveoverButton(id);
+    } else {
+        score += firstRoll + secondRoll;
+        document.getElementById("currentscore").innerHTML = score;
+    }
+}
+
+function giveoverButton(id) {
+    yscore += score;
+    score = 0;
+    document.getElementById("currentscore").innerHTML = score;
+    document.getElementById("yourscore").innerHTML = yscore;
+    document.getElementById("roll").disabled = true;
+    document.getElementById("giveover").disabled = true;
+    socket.emit("give_over", {socketId: id, score: yscore});
+
+    if (yscore >= 100) {
+        document.getElementById("info").innerHTML = "You won!";
+    } else if(oscore >= 100) {
+        document.getElementById("info").innerHTML = "You lost!";
+    }
+}
+
+socket.on('get_scores', obj => {
+    console.log(obj);
+    yourTurn = true;
+    document.getElementById("roll").disabled = false;
+    document.getElementById("giveover").disabled = false;
+    document.getElementById("opponentscore").innerHTML = obj.score;
+});
+/*
+function restartButton() {
+    score = 0;
+    yscore = 0;
+    oscore = 0;
+    document.getElementById("currentscore").innerHTML = score;
+    document.getElementById("yourscore").innerHTML = yscore;
+    document.getElementById("opponentscore").innerHTML = oscore;
+    document.getElementById("dice1").innerHTML = "0";
+    document.getElementById("dice2").innerHTML = "0";
+    document.getElementById("roll").disabled = false;
+    document.getElementById("giveOver").disabled = false;
+    document.getElementById("info").innerHTML = "";
+}*/
+
+function sendPrivate(id) {
+    if (document.getElementById("message-input-private").value.trim() !== '') {
+        socket.emit('chat_message_private', {message: document.getElementById("message-input-private").value, socketId: id});
+        document.getElementById("message-input-private").value = '';
+    } 
+}
+
+socket.on('chat_message_private', msgObj => {
+    const item = document.createElement('div');
+    item.innerHTML = `
+        <div>
+            <p><b>${ msgObj.user }</b></p>
+            <p>${ msgObj.message }</p>
+        </div>
+    `
+    document.getElementById("chat-messages-private").appendChild(item);
+});
