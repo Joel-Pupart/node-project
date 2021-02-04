@@ -14,7 +14,6 @@ html, body {
     height:800px;
     background:#eff3f7;
     margin:0 auto;
-    font-size:0;
     border-radius:5px;
     overflow:hidden;
 }
@@ -225,4 +224,16 @@ h2 {
 ::-webkit-scrollbar-corner {
     background: transparent;
 }
+
+.invite-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+}
+
 

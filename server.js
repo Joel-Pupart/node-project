@@ -150,7 +150,21 @@ io.on('connection', (socket) => {
     });
 
     socket.on('sendYo', data => {
-        socket.to(data.socketId).emit('reciveYo', { 'user': sess.username });
+        socket.to(data.socketId).emit('reciveYo', { 'user': sess.username, 'socketId' : socket.id });
+    });
+
+    socket.on('invite_accepted', id => {
+        console.log("invite accepted");
+        socket.to(id).emit('game_on', {'user': sess.username, 'socketId' : socket.id});
+    });
+
+    socket.on('give_over', obj => {
+        console.log(obj);
+        socket.to(obj.socketId).emit('get_scores', {'score': obj.score, 'socketId' : socket.id});
+    });
+
+    socket.on('chat_message_private', msg => {
+        socket.to(msg.socketId).emit('chat_message_private', { 'message': msg.message, 'socketId': socket.id, 'user': sess.username });
     });
 });
 
