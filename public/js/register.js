@@ -5,6 +5,7 @@ registerButton.addEventListener('click', e => {
     if (isSuccess) {
         console.log(314);
         const data = { username: usernameInput.value, password: passwordInput.value };
+
         fetch('/register', {
             method: 'POST',
             headers: {
@@ -25,3 +26,4 @@ registerButton.addEventListener('click', e => {
             });
     }
 });
+
