@@ -13,8 +13,14 @@ Eete Rajasalu<br>
 
 <b>Rakendus:</b>
 
-<b>Kas oleksid tahtnud täita mingit muud ülesannet selles meeskonnas?:</b>
+<b>Kas oleksid tahtnud täita mingit muud ülesannet selles meeskonnas?:</b><br>
+Joel - Ei<br>
+Kristjan - Ei, html/css sobis väga hästi.<br>
 
-<b>Üks pehme oskus, mida õppisin ja endas arendasin:</b>
+<b>Üks pehme oskus, mida õppisin ja endas arendasin:</b><br>
+Joel - Positiivse suhtumise säilitamine olukorras, kus 24 tundi järjest mitte midagi ei tööta<br>
+Kristjan - Suhtlemine tiimiga ja projektiga töötamine distantsilt<br>
 
-<b>Üks tehniline oskus, mida õppisin ja endas arendasin:</b>
+<b>Üks tehniline oskus, mida õppisin ja endas arendasin:</b><br>
+Joel - Socket, socket ja veel kord socket<br>
+Kristjan - Serveri alustamine ubuntus<br>
