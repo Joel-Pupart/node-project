@@ -166,6 +166,11 @@ io.on('connection', (socket) => {
     socket.on('chat_message_private', msg => {
         socket.to(msg.socketId).emit('chat_message_private', { 'message': msg.message, 'socketId': socket.id, 'user': sess.username });
     });
+
+    socket.on('exit_game', id => {
+        socket.to(id.socketId).emit('exit_game', {'socketId' : socket.id });
+    });
+
 });
 
 
