@@ -11,7 +11,7 @@ Eete Rajasalu<br>
 
 <b>Figma: https://www.figma.com/files/team/938748541218739247/Projekt-3</b>
 
-<b>Rakendus:</b>
+<b>Rakendus: https://ta19pupart.itmajakas.ee/</b>
 
 <b>Kas oleksid tahtnud täita mingit muud ülesannet selles meeskonnas?:</b><br>
 Joel: Ei<br>
