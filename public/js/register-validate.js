@@ -3,14 +3,13 @@ const regex = '/^[a-zA-Z]*$/g';
 let isSuccess = true;
 
 submit.addEventListener("click", validate);
-
 function validate(e) {
     e.preventDefault();
 
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
     const passwordAgain = document.getElementById("password-again").value;
-
+  
     if (!username || username === '' || username.length < 6) {
         isSuccess = false;
         const nameError = document.getElementById("username-error");
@@ -19,6 +18,7 @@ function validate(e) {
     `
     }
 
+  
     if (password.length < 6 || !password) {
         isSuccess = false;
         const passwordError = document.getElementById("password-error");
@@ -27,6 +27,7 @@ function validate(e) {
     `
     }
 
+  
     if (password !== passwordAgain) {
         isSuccess = false;
         const passwordAgainError = document.getElementById("password-again-error");
@@ -34,4 +35,5 @@ function validate(e) {
         <p>Password must be the same!</p>
     `
     }
+
 }

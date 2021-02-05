@@ -1,7 +1,6 @@
 const registerButton = document.getElementById('register-button');
 const usernameInput = document.getElementById('username');
 const passwordInput = document.getElementById('password');
-
 registerButton.addEventListener('click', e => {
     if (isSuccess) {
         console.log(314);
@@ -27,3 +26,4 @@ registerButton.addEventListener('click', e => {
             });
     }
 });
+

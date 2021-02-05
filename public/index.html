@@ -12,25 +12,85 @@
 <body>
     <main class="chat">
         <section class="users">
-            <div id="user-list" class="contacts">
+            <div class="user-container">Userlist</div>
+            <div id="user-list">
             </div>
         </section>
-        <section>
+        <section class="chat-container">
             <div class="chat-header">
-                <p>General Chat</p>
-                <button id="logout">Log out</button>
+                <button class="button" id="logout" style="margin:5px;">Log out</button>
             </div>
-            <div id="chat-messages" class="chat-body">
+            <div class="global-chat">Global Chat</div>
+            <div class="chats">
+                <div>
+                    <div id="chat-messages" class="chat-body">
+                    </div>
+                    <div class="chat-footer">
+                        <label>
+                            <input class="message-box" id="message-input" type="text" value="" placeholder="Aa" />
+                        </label>
+                    </div>
+                </div>
+                <div id="private">
+
+                </div>
             </div>
-            <div class="chat-footer">
-                <label>
-                    <input class="message-box" id="message-input" type="text" value="" placeholder="Aa" />
-                </label>
+            <div class="game-main" id="game">
+
             </div>
         </section>
-        <div id="game">
-
+        <!--<div id="info"></div>
+                    <div>
+                        <div id="chat-messages-private"> 
+                        </div>
+                        <div>
+                            <label>
+                                <input id="message-input-private" type="text" value="" placeholder="Aa" />
+                            </label>
+                            <button onclick="sendPrivate('${id}')">Send</button>
+                        </div>
+                    </div>-->
+        <!--
+        <div class="game-main" id="game">
+            <section class="">
+                <div>
+                    <span>Your Score:</span>
+                    <span id="yourscore">0</span>
+                </div>
+                <div>
+                    <span>Current Score:</span>
+                    <span id="currentscore">0
+                </div>
+                <div>
+                    <span>Opponent Score:</span>
+                    <span id="opponentscore">0
+                </div>
+                <div id="dice1">0</div>
+                <div id="dice2">0</div>
+                <div>
+                    <button onclick="rollDice('${id}')" id="roll">
+                        Roll
+                    </button>
+                    <button onclick="giveoverButton('${id}')" id="giveover">
+                        Give Over
+                    </button>
+                    
+                </div>
+                <div id="info">
+                </div>
+                <div>
+                    <div id="chat-messages-private">
+                    </div>
+                    <div>
+                        <label>
+                            <input id="message-input-private" type="text" value="" placeholder="Aa" />
+                        </label>
+                        <button onclick="sendPrivate('${id}')">Send</button>
+                    </div>
+                </div>
+            </section> 
         </div>
+    -->
     </main>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/public/js/app.js"></script>
