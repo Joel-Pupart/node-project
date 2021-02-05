@@ -16,16 +16,16 @@
         <span id="register-error"></span>
         <form class="register-elements">
             <div>
-                <input class="username" placeholder="Username" id="username" name="username" type="text">
                 <span id="username-error"></span>
+                <input class="username" placeholder="Username" id="username" name="username" type="text">
             </div>
             <div>
-                <input class="password" placeholder="Password" id="password" type="password" >
                 <span id="password-error"></span>
+                <input class="password" placeholder="Password" id="password" type="password">
             </div>
             <div>
-                <input class="confirm-password" placeholder="Confirm password" id="password-again" type="password" >
-                <span id="password-again-error"></span>
+                <span class="error" id="password-again-error"></span>
+                <input class="confirm-password" placeholder="Confirm password" id="password-again" type="password">
             </div>
             <div>
                 <button class="submit" type="button" id="register-button">Register</button>
@@ -35,4 +35,5 @@
     <script src="/public/js/register-validate.js"></script>
     <script src="/public/js/register.js"></script>
 </body>
+
 </html>
