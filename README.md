@@ -19,7 +19,7 @@ Joonas: Ei, olin abiks kõigile, kes abi palusid!<br>
 Kenneth: Ei, ma arvan, et olin back-endi alal olemisega üsna rahul.<br>
 Kristjan: Ei, html/css sobis väga hästi.<br>
 Priit: EI. Üle TEAMsi oli Kristjaniga väga mõnus tööd teha. Info ei jäänud kusagil seisma ja sai ekraani jagatud. Nii saab teinekordki tööd teha. Mul oligi vaja palju juurde õppida .css ja .html. Kristjaniga sain seda teha.<br>
-Sander:<br>
+Sander: Ei.<br>
 Eete:<br>
 
 <b>Üks pehme oskus, mida õppisin ja endas arendasin:</b><br>
@@ -29,7 +29,7 @@ Kenneth: Ma arvan, et suhtlemisega saan ma hästi hakkama, kuid esitluste andmis
 Kristjan: Suhtlemine tiimiga ja projektiga töötamine distantsilt.<br>
 Priit: Alati saab kelleltki abi. Ainult küsi. Isegi siis kui küsid sama asja mitmes kord.
 Palju on võimalik teha copy-pastega. Mitte küll üks-ühele, aga ikkagi on sellest suur abi.<br>
-Sander:<br>
+Sander: Teistele tehnilise nõu andmine.<br>
 Eete:<br>
 
 <b>Üks tehniline oskus, mida õppisin ja endas arendasin:</b><br>
@@ -38,5 +38,5 @@ Joonas: Vaatasin pealt ja üritasin õppida JS  juurde ja üks asi mis mulle mee
 Kenneth: Tegelesin JS-iga ja vaatasin pealt, kuidas seda teised tegid, nii et tunnen end üldiselt selles palju enesekindlamalt.<br>
 Kristjan: serveri alustamine ubuntus.<br>
 Priit: .html ja .css jälle rohkem arusaamine<br>
-Sander:<br>
+Sander: Õppisin mis on socket ja mida see teeb ning html ja css-i edasi laiendus.<br>
 Eete:<br>
