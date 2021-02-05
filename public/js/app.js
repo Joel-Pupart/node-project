@@ -106,7 +106,9 @@ function generateGame(id) {
                 <button onclick="giveoverButton('${id}')" id="giveover">
                     Give Over
                 </button>
-                
+                <button onclick="exitgame('${id}')">
+                    Exit Game
+                </button>
             </div>
             <div id="info">
             </div>
@@ -126,10 +128,6 @@ function generateGame(id) {
             document.getElementById("roll").disabled = true;
             document.getElementById("giveover").disabled = true;
         }
-        
-        /*<button onclick="restartButton()" id="restart">
-            Restart
-        </button>*/
 }
 
 
@@ -172,29 +170,24 @@ socket.on('get_scores', obj => {
     document.getElementById("giveover").disabled = false;
     document.getElementById("opponentscore").innerHTML = obj.score;
 });
-/*
-function restartButton() {
-    score = 0;
-    yscore = 0;
-    oscore = 0;
-    document.getElementById("currentscore").innerHTML = score;
-    document.getElementById("yourscore").innerHTML = yscore;
-    document.getElementById("opponentscore").innerHTML = oscore;
-    document.getElementById("dice1").innerHTML = "0";
-    document.getElementById("dice2").innerHTML = "0";
-    document.getElementById("roll").disabled = false;
-    document.getElementById("giveOver").disabled = false;
-    document.getElementById("info").innerHTML = "";
-}*/
 
 function sendPrivate(id) {
     if (document.getElementById("message-input-private").value.trim() !== '') {
         socket.emit('chat_message_private', {message: document.getElementById("message-input-private").value, socketId: id});
+        const item = document.createElement('div');
+        item.innerHTML = `
+            <div>
+                <p><b>You</b></p>
+                <p>${ document.getElementById("message-input-private").value }</p>
+            </div>
+        `
         document.getElementById("message-input-private").value = '';
+        document.getElementById("chat-messages-private").appendChild(item);
     } 
 }
 
 socket.on('chat_message_private', msgObj => {
+    console.log(msgObj);
     const item = document.createElement('div');
     item.innerHTML = `
         <div>
@@ -204,3 +197,12 @@ socket.on('chat_message_private', msgObj => {
     `
     document.getElementById("chat-messages-private").appendChild(item);
 });
+
+function exitgame(id) {
+    socket.emit("exit_game", {socketId: id});
+    document.getElementById("game").innerHTML = "You closed the game!";
+}
+
+socket.on('exit_game', id => {
+    document.getElementById("game").innerHTML = "Your opponent closed the game";
+})
